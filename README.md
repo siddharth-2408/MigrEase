@@ -1,111 +1,198 @@
-# 🧳 Packers and Movers (Spring Boot + Python Integration)
+# 🧳 Packers and Movers - Intelligent Furniture Matching System
 
-This project is a hybrid **Spring Boot + Python** system designed to intelligently **match uploaded furniture images with IKEA product data** using image similarity algorithms.  
-The tool is optimized for use in relocation, moving, or inventory platforms where identifying furniture dimensions from an image is needed.
+> A hybrid **Spring Boot + Python** system that intelligently matches uploaded furniture images with IKEA product data using advanced image similarity algorithms. Perfect for relocation, moving, and inventory management platforms.
 
-The system uses Structural Similarity Index (SSIM) for image comparison, supports **category-based filtering**, and provides **fallback standard dimensions** for unmatched images.  
-It generates a visual **HTML report** with estimated product details.
+## 🌟 Overview
+
+This intelligent system uses **Structural Similarity Index (SSIM)** for precise image comparison, supports category-based filtering, and provides fallback standard dimensions for unmatched images. The tool generates comprehensive visual HTML reports with estimated product details.
+
+### Key Highlights
+- 🔍 **Smart Image Matching** - Advanced SSIM-based furniture recognition
+- 📊 **Comprehensive Reports** - Auto-generated HTML reports with product details
+- 🏷️ **Category Filtering** - Optimized matching within furniture categories
+- 📦 **IKEA Integration** - Extensive product database with real dimensions
+- 🔄 **Fallback System** - Standard estimates when matches are uncertain
 
 ---
 
 ## 📁 Project Structure
 
+```
 MigrEase/
 │
 ├── src/
-│ └── main/
-│ └── java/ # Java source files (Spring Boot)
-│ └── resources/
+│   └── main/
+│       ├── java/              # 🏗️ Spring Boot source files
+│       └── resources/         # 📋 Configuration files
 │
 ├── python/
-│ ├── app.py # 🧠 Main Python script for matching
-│ ├── ikea.csv # 📦 IKEA product metadata (CSV with image links, dimensions, categories)
-│ ├── image_cache_ssim/ # 🖼️ Cached images to speed up processing
-│ ├── report/ # 📊 Auto-generated HTML reports
+│   ├── app.py                 # 🧠 Main Python matching engine
+│   ├── ikea.csv              # 📦 IKEA product metadata database
+│   ├── image_cache_ssim/     # 🖼️ Cached images for performance
+│   └── report/               # 📊 Generated HTML reports
 │
-├── README.md # 📘 You're reading it
-└── ...
-
-yaml
-Copy
-Edit
+├── README.md                  # 📘 Project documentation
+└── requirements.txt           # 📋 Python dependencies
+```
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
-✅ Match user-uploaded images with IKEA product catalog  
-✅ Use SSIM (Structural Similarity Index) for high-accuracy image comparison  
-✅ Filter comparisons by category (e.g., "Chairs", "Tables")  
-✅ Automatically fallback to standard size estimates if match confidence is low  
-✅ Generate clean, printable **HTML reports**  
-✅ Avoid duplicate uploads using file hash detection  
-✅ Add unmatched images to dataset with a unique ID for future reference  
+### Core Functionality
+- ✅ **Image-to-Product Matching** - Match uploaded furniture images with IKEA catalog
+- ✅ **SSIM Algorithm** - High-accuracy Structural Similarity Index comparison
+- ✅ **Category Filtering** - Smart filtering by furniture type (Chairs, Tables, etc.)  
+- ✅ **Fallback Dimensions** - Standard size estimates for low-confidence matches
+- ✅ **HTML Report Generation** - Clean, printable detailed reports
+- ✅ **Duplicate Detection** - File hash-based duplicate upload prevention
+- ✅ **Dataset Enrichment** - Auto-add unmatched images for future reference
+
+### Advanced Features
+- 🚀 **Performance Optimized** - Image caching for faster processing
+- 🎯 **Confidence Scoring** - Match quality assessment
+- 📈 **Analytics Ready** - Detailed matching statistics
+- 🔧 **Extensible Architecture** - Easy integration with existing systems
 
 ---
 
-## 🛠️ Requirements
+## 🛠️ Installation & Setup
 
-- Python 3.8+
-- Install dependencies via `pip`:
-  ```bash
-  pip install opencv-python numpy pandas requests beautifulsoup4 scikit-image pillow
-🖼️ Sample Output
-After running the script, the system will:
+### Prerequisites
+- **Python 3.8+**
+- **Java 11+** (for Spring Boot)
+- **Maven** (for dependency management)
 
-Estimate dimensions (width, depth, height, weight)
+### Python Dependencies
+```bash
+pip install opencv-python numpy pandas requests beautifulsoup4 scikit-image pillow
+```
 
-Show matched product image (if available)
+### Quick Start
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/packers-and-movers.git
+   cd packers-and-movers
+   ```
 
-Use fallback defaults if no confident match is found
+2. **Install Python dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Generate a detailed HTML report
+3. **Run the Python matching engine**
+   ```bash
+   cd python
+   python app.py
+   ```
 
-📊 Standard Fallback Dimensions
-Used when image similarity confidence is below threshold.
+4. **Start Spring Boot application**
+   ```bash
+   mvn spring-boot:run
+   ```
 
-Category	Width (cm)	Depth (cm)	Height (cm)	Weight (kg)
-Chairs	45	50	90	4.5
-Stool	35	35	45	2.5
-Table	120	60	75	15
-Cabinet	80	40	180	35
-Bed	160	200	45	40
+---
 
-➕ Dataset Enrichment
-If a product image is not matched with sufficient confidence, the tool will:
+## 🎯 Usage Example
 
-Add the image to the dataset (ikea.csv) with a new CUSTOM_<uuid> ID
+### Basic Image Matching
+```python
+# Upload furniture image and get matches
+python app.py --image "chair_image.jpg" --category "Chairs"
+```
 
-Cache the image to skip future reprocessing
+### API Integration
+```java
+// Spring Boot controller example
+@PostMapping("/match-furniture")
+public ResponseEntity<String> matchFurniture(@RequestParam("file") MultipartFile file) {
+    // Process image through Python subprocess
+    String result = pythonMatcher.processImage(file);
+    return ResponseEntity.ok(result);
+}
+```
 
-Use fallback dimensions based on the selected category
+---
 
-🤖 Integration with Spring Boot
-This Python module can be plugged into your Spring Boot backend via:
+## 📊 Standard Fallback Dimensions
 
-REST API calls using ProcessBuilder or Runtime.exec()
+When image similarity confidence is below threshold, the system uses these standard dimensions:
 
-File uploads handled through a temporary directory
+| Category | Width (cm) | Depth (cm) | Height (cm) | Weight (kg) |
+|----------|------------|------------|-------------|-------------|
+| **Chairs** | 45 | 50 | 90 | 4.5 |
+| **Stools** | 35 | 35 | 45 | 2.5 |
+| **Tables** | 120 | 60 | 75 | 15 |
+| **Cabinets** | 80 | 40 | 180 | 35 |
+| **Beds** | 160 | 200 | 45 | 40 |
 
-Returning HTML reports as links or static assets
+---
 
-Use python/app.py as a subprocess from your Java controller to drive backend logic.
+## 🖼️ Sample Output
 
-📬 Future Improvements
-Train a CNN model for better image embeddings
+After processing an image, the system provides:
 
-Enrich backend functionality and add driver support
+- 📏 **Estimated Dimensions** - Width, depth, height, and weight
+- 🖼️ **Matched Product Image** - Visual confirmation of the match
+- 📋 **Product Details** - IKEA product information and specifications
+- 📊 **Confidence Score** - Match quality assessment
+- 📄 **HTML Report** - Comprehensive formatted report
 
-Add real-time image upload support from web clients
+---
 
-Deploy as a microservice using FastAPI or Flask
+## 🔧 Integration with Spring Boot
 
-Detect material types using NLP on IKEA product descriptions
+### REST API Integration
+The Python module integrates seamlessly with Spring Boot through:
 
-👨‍💻 Author
-Developed by Us
-Third Year Minor Project — Intelligent Packing & Moving Assistant
+- 🌐 **REST API Calls** - Using `ProcessBuilder` or `Runtime.exec()`
+- 📁 **File Upload Handling** - Temporary directory management
+- 📊 **Report Generation** - HTML reports as static assets
+- 🔄 **Subprocess Communication** - Python script execution from Java controllers
 
-pgsql
-Copy
-Edit
+### Example Controller
+```java
+@RestController
+@RequestMapping("/api/furniture")
+public class FurnitureMatchingController {
+    
+    @PostMapping("/match")
+    public ResponseEntity<MatchResult> matchFurniture(
+            @RequestParam("image") MultipartFile image,
+            @RequestParam("category") String category) {
+        
+        // Execute Python matching script
+        MatchResult result = furnitureService.processImage(image, category);
+        return ResponseEntity.ok(result);
+    }
+}
+```
+
+---
+
+## 🚀 Future Roadmap
+
+### Short Term
+- [ ] **CNN Model Integration** - Deep learning-based image embeddings
+- [ ] **Real-time Processing** - WebSocket-based live image upload
+- [ ] **Material Detection** - NLP analysis of product descriptions
+- [ ] **Mobile App Support** - React Native companion app
+
+### Long Term
+- [ ] **Microservice Architecture** - FastAPI/Flask deployment
+- [ ] **Cloud Integration** - AWS/GCP image processing
+- [ ] **AI Enhancement** - Custom trained models for furniture recognition
+- [ ] **Multi-vendor Support** - Beyond IKEA product matching
+
+---
+
+## 👨‍💻 Authors & Acknowledgments
+
+**Developed by:** Teerth, Vaidehi and Siddharth 
+**Project Type:** Third Year Minor Project  
+**Theme:** Intelligent Packing & Moving Assistant
+
+### Special Thanks
+- 🏪 **IKEA** - For comprehensive product data
+- 🐍 **OpenCV Community** - For excellent computer vision libraries
+- 🌱 **Spring Boot Team** - For robust backend framework
