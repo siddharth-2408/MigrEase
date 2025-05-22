@@ -80,10 +80,7 @@ pip install opencv-python numpy pandas requests beautifulsoup4 scikit-image pill
    pip install opencv-python numpy pandas requests beautifulsoup4 scikit-image pillow
    ```
 
-3. **Start Spring Boot application**
-   ```bash
-   mvn spring-boot:run
-   ```
+3. **From any IDE Start Spring Boot application**
 
 ---
 
