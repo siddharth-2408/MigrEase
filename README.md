@@ -71,22 +71,16 @@ pip install opencv-python numpy pandas requests beautifulsoup4 scikit-image pill
 ### Quick Start
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/packers-and-movers.git
+   git clone https://github.com/siddharth-2408/MigrEase.git
    cd packers-and-movers
    ```
 
 2. **Install Python dependencies**
    ```bash
-   pip install -r requirements.txt
+   pip install opencv-python numpy pandas requests beautifulsoup4 scikit-image pillow
    ```
 
-3. **Run the Python matching engine**
-   ```bash
-   cd python
-   python app.py
-   ```
-
-4. **Start Spring Boot application**
+3. **Start Spring Boot application**
    ```bash
    mvn spring-boot:run
    ```
