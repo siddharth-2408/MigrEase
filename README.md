@@ -43,9 +43,9 @@ MigrEase/
 ## 🛠️ Requirements
 
 - Python 3.8+
+- pip packages (install via `requirements.txt` or manually):
+  ```bash
   pip install opencv-python numpy pandas requests beautifulsoup4 scikit-image pillow
-🧪 How to Run the Python Matcher
-Make sure you're in the root of your Spring Boot project.
 
 🖼️ Sample Output
 After running the script, it will:
