@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Dashboard</title>
+  <link rel="stylesheet" th:href="@{/css/user/dashboard/user-dashboard.css}" />
+</head>
+<body>
+
+<div class="dashboard-container">
+
+  <!-- Sidebar Fragment -->
+  <div th:replace="fragments/layout :: sidebar"></div>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Dashboard if user has address -->
+    <section th:if="${hasAddress}">
+      <header class="dashboard-header">
+        <h1>Hello, <span th:text="${loggedUser.name}">User</span> 👋</h1>
+        <p>Here's your move status and important info.</p>
+      </header>
+
+      <div class="cards-grid">
+        <!-- Current Status Card -->
+        <div class="card">
+          <h3>📍 Current Status</h3>
+          <p><strong>Driver Assigned</strong></p>
+          <div class="progress-bar">
+            <div class="progress" style="width: 10%;"></div>
+          </div>
+        </div>
+
+        <!-- Booking Info Card -->
+        <div class="card">
+          <h3>🗂 Booking Info</h3>
+          <p><strong>ID:</strong> <span th:text="${bookingId}">#MOVE2025</span></p>
+          <p><strong>From:</strong> <span th:text="${address.pickupCity}">N/A</span></p>
+          <p><strong>To:</strong> <span th:text="${address.dropCity}">N/A</span></p>
+          <p><strong>Date:</strong> 10 May - 13 May</p>
+        </div>
+
+        <!-- Load Summary Card -->
+        <div class="card">
+          <h3>📦 Load Summary</h3>
+          <p>Volume: <span th:text="${volume}">0</span> m³</p>
+          <p>Recommended: <span th:text="${truckType}">Truck</span></p>
+        </div>
+
+        <!-- Payment Card -->
+        <div class="card">
+          <h3>💳 Payment</h3>
+          <p>Total: ₹<span th:text="${#numbers.formatDecimal(totalWeight * 200, 0, 'COMMA', 0, 'POINT')}">0</span></p>
+          <p>Status: <span class="paid">Paid</span></p>
+          <button>Download Invoice</button>
+        </div>
+
+        <!-- Notifications Card -->
+        <div class="card wide">
+          <h3>🔔 Notifications</h3>
+          <ul>
+            <li>✔️ Packing Completed</li>
+            <li>🚚 Vehicle Dispatched</li>
+            <li>📍 ETA: 13 May, 6 PM</li>
+          </ul>
+        </div>
+
+        <!-- Support Card -->
+        <div class="card wide">
+          <h3>🤝 Need Help?</h3>
+          <p>Our support team is available 24x7.</p>
+          <button>Chat Now</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fallback if no address -->
+    <section th:unless="${hasAddress}" class="no-data-section">
+      <div class="no-requests">
+        <h2>No Requests Made Yet</h2>
+        <p>You haven't made any move requests yet.</p>
+        <a th:href="@{/user/booking}" class="btn">Make a Request</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>

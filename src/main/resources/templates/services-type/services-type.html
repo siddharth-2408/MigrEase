@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services Type</title>
+    <link rel="stylesheet" th:href="@{/css/services-type/services-type.css}">
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <div class="logo">
+        <a th:href="@{/}">
+            <img th:src="@{/images/assets/logo.png}" alt="Packers & Movers Logo" class="logo-img">
+        </a>
+    </div>
+    <ul class="nav-links">
+        <li><a th:href="@{/}">Home</a></li>
+        <li><a th:href="@{/contact}">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- Services Section -->
+<section class="services">
+    <h1>Our Services</h1>
+    <div class="service-container">
+
+        <!-- Packing Assistance -->
+        <div class="service-card">
+            <img th:src="@{/images/services-type/residential.jpg}" alt="Packing Assistance">
+            <h2>📦 Packing Assistance</h2>
+            <ul>
+                <li>Professional-grade packing materials</li>
+                <li>Trained staff to carefully pack fragile or valuable items</li>
+                <li>Can be booked stand-alone</li>
+            </ul>
+            <a th:href="@{/packing-assistance}" class="proceed-btn">Proceed</a>
+        </div>
+
+        <!-- Packing + Moving -->
+        <div class="service-card">
+            <img th:src="@{/images/services-type/office.jpg}" alt="Office Moving">
+            <h2>🚛 Packing + Moving</h2>
+            <ul>
+                <li>Packing + loading + transport + unloading</li>
+                <li>Ideal for full house/office relocations</li>
+                <li>Cost-effective and most commonly used plan</li>
+            </ul>
+            <a th:href="@{/packing-moving-assistance}" class="proceed-btn">Proceed</a>
+        </div>
+
+        <!-- Customized Moving -->
+        <div class="service-card">
+            <img th:src="@{/images/services-type/vehicle.jpg}" alt="Vehicle Transportation">
+            <h2>🛠️ Customized Moving Plan</h2>
+            <ul>
+                <li>Gives users control and flexibility for special cases</li>
+                <li>Flexible scheduling</li>
+                <li>Business relocations</li>
+            </ul>
+            <a th:href="@{/customized-assistance}" class="proceed-btn">Proceed</a>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>

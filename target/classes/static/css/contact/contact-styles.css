@@ -1,0 +1,91 @@
+/* Import global styles */
+@import url("../index/index-styles.css");
+@import url("../registration/registration-styles.css"); /* Use styles from registration page */
+
+/* Container styling (aligned with login & registration) */
+.container {
+    width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: white; /* Match other pages */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Heading */
+h1 {
+    color: #007bff; /* Match theme */
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Subtext */
+p {
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Labels */
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Input & Textarea Styling */
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+    height: 100px;
+}
+
+/* Button Styling */
+button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .container {
+        width: 90%;
+    }
+}
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 200px;
+    height: 50px;
+    margin-right: 10px;
+}

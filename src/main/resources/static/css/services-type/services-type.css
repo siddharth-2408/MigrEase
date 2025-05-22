@@ -1,0 +1,156 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    color: #222;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #ff8c00, #ff2e63);
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 200px;
+    height: 50px;
+}
+
+/* Nav Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ffeb3b;
+}
+
+/* Services Section */
+.services {
+    text-align: center;
+    padding: 120px 20px 50px; /* Extra top padding to offset fixed nav */
+}
+
+.services h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+/* Service Container */
+.service-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Service Card */
+.service-card {
+    background: white;
+    width: 300px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: left;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+.service-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.service-card h2 {
+    font-size: 1.2em;
+    margin: 10px 0 15px;
+    text-align: center;
+}
+
+.service-card ul {
+    padding-left: 1.2rem;
+    list-style-type: disc;
+    color: #444;
+    font-size: 15px;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+/* Proceed Button */
+.proceed-btn {
+    text-decoration: none;
+    background: #ffeb3b;
+    color: #222;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 20px;
+}
+
+.proceed-btn:hover {
+    background: #ffdd00;
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .service-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-links li {
+        margin: 5px 0;
+    }
+}

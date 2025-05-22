@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Booking Details</title>
+    <link rel="stylesheet" th:href="@{/css/user/dashboard-styles.css}" />
+    <link rel="stylesheet" th:href="@{/css/user/dashboard/user-dashboard.css}" />
+    <link rel="stylesheet" th:href="@{/css/user/booking-details.css}" />
+    <!-- Font Awesome for better icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+<div th:replace="fragments/layout :: sidebar"></div>
+
+<div class="main-content">
+    <div class="booking-details-container">
+        <div class="booking-header">
+            <h2><i class="fas fa-box"></i> Booking Details</h2>
+            <div class="booking-status" th:classappend="${#strings.toUpperCase(booking.status) == 'COMPLETED'} ? 'status-completed' : (${#strings.toUpperCase(booking.status) == 'PENDING'} ? 'status-pending' : 'status-in-progress')">
+                <span th:text="${#strings.toUpperCase(booking.status)}">STATUS</span>
+            </div>
+        </div>
+
+        <div class="card-grid">
+            <div class="detail-card">
+                <h3><i class="fas fa-tag"></i> Booking Info</h3>
+                <div class="info-row">
+                    <span class="label">Booking ID:</span>
+                    <span class="value" th:text="${booking.bookingId}">BK12345</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Created:</span>
+                    <span class="value" th:text="${#temporals.format(booking.createdAt, 'dd MMM yyyy HH:mm')}">01 Jan 2023 14:30</span>
+                </div>
+            </div>
+
+            <div class="detail-card">
+                <h3><i class="fas fa-map-marker-alt"></i> Pickup Address</h3>
+                <p class="address" th:text="${booking.pickupAddress}">123 First Street, City, Country</p>
+            </div>
+
+            <div class="detail-card">
+                <h3><i class="fas fa-flag-checkered"></i> Drop Address</h3>
+                <p class="address" th:text="${booking.dropAddress}">456 Second Avenue, City, Country</p>
+            </div>
+        </div>
+
+        <div class="detail-section furniture-items">
+            <h3><i class="fas fa-couch"></i> Furniture Items</h3>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Dimensions (cm)</th>
+                        <th>Weight (kg)</th>
+                        <th>Quantity</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item : ${booking.furnitureItems}">
+                        <td th:text="${item.category}">Living Room</td>
+                        <td th:text="${item.width + ' × ' + item.height + ' × ' + item.depth}">200×90×85</td>
+                        <td th:text="${item.weight}">25</td>
+                        <td th:text="${item.quantity}">1</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="total-weight">Total Weight: <strong th:text="${booking.totalWeight} + ' kg'"></strong></p>
+        </div>
+
+        <div class="action-buttons">
+            <a th:href="@{/user/my-bookings}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+
+            <div class="right-buttons">
+                <a th:if="${#strings.toUpperCase(booking.status) == 'PENDING'}" th:href="@{/user/bookings/{id}/edit(id=${booking.bookingId})}" class="btn btn-primary">
+                    <i class="fas fa-edit"></i> Edit Booking
+                </a>
+                <a th:if="${#strings.toUpperCase(booking.status) == 'COMPLETED'}" th:href="@{/user/bookings/{id}/receipt(id=${booking.bookingId})}" class="btn btn-info">
+                    <i class="fas fa-file-invoice"></i> View Receipt
+                </a>
+                <button th:if="${#strings.toUpperCase(booking.status) != 'COMPLETED' && #strings.toUpperCase(booking.status) != 'CANCELLED'}" class="btn btn-danger"
+                        onclick="confirmCancel()">
+                    <i class="fas fa-times-circle"></i> Cancel Booking
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div id="cancelModal" class="modal">
+    <div class="modal-content">
+        <h3><i class="fas fa-exclamation-triangle"></i> Cancel Booking</h3>
+        <p>Are you sure you want to cancel this booking? This action cannot be undone.</p>
+        <div class="modal-buttons">
+            <button class="btn btn-secondary" onclick="closeModal()">
+                <i class="fas fa-times"></i> No, Keep It
+            </button>
+            <form th:action="@{/user/bookings/{id}/cancel(id=${booking.bookingId})}" method="post">
+                <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-check"></i> Yes, Cancel Booking
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmCancel() {
+        document.getElementById('cancelModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('cancelModal').style.display = 'none';
+    }
+
+    // Close modal if clicking outside of it
+    window.onclick = function(event) {
+        const modal = document.getElementById('cancelModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>

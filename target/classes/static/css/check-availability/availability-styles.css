@@ -1,0 +1,152 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    color: #222;
+    text-align: center;
+}
+
+/* NAVIGATION BAR */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #ff8c00, #ff2e63);
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 200px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: #ffeb3b;
+}
+
+/* AVAILABILITY SECTION */
+.availability {
+    margin-top: 100px;
+    padding: 40px;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+/* FORM CONTAINER */
+.form-container {
+    background: white;
+    padding: 30px;
+    display: inline-block;
+    border-radius: 10px;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    min-width: 400px;
+}
+
+label {
+    font-size: 1.2em;
+    font-weight: 600;
+    display: block;
+    margin-top: 10px;
+    text-align: left;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2em;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background: #ff8c00;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #ff2e63;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.location-text {
+    margin: 5px 0 15px 0;
+    text-align: left;
+    font-size: 1em;
+    color: #333;
+}
+
+/* Loading state indicator */
+.loading {
+    color: #ff8c00;
+    font-style: italic;
+}
+
+/* Error and success states */
+.error {
+    color: #e74c3c;
+}
+
+.success {
+    color: #2ecc71;
+}

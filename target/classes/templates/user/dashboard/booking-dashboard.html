@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" th:href="@{/css/user/dashboard-styles.css}" />
+  <link rel="stylesheet" th:href="@{/css/user/dashboard/user-dashboard.css}" />
+  <link rel="stylesheet" th:href="@{/css/user/dashboard/booking-dashboard.css}" />
+</head>
+<body>
+
+<!-- Sidebar Fragment -->
+<div th:replace="fragments/layout :: sidebar"></div>
+
+<div class="container">
+  <h2>Enter Your Address Details</h2>
+
+  <div class="address-section">
+    <div class="address-block">
+      <h3><i class="fas fa-map-marker-alt"></i> Pickup Address</h3>
+      <input type="text" id="pickupHouse" placeholder="House No. / Flat">
+      <input type="text" id="pickupStreet" placeholder="Street / Locality">
+      <input type="text" id="pickupPincode" placeholder="Pincode" onblur="autoFillCity('pickup')">
+      <input type="text" id="pickupCity" placeholder="City" readonly>
+    </div>
+    <div class="address-block">
+      <h3><i class="fas fa-truck-loading"></i> Drop Address</h3>
+      <input type="text" id="dropHouse" placeholder="House No. / Flat">
+      <input type="text" id="dropStreet" placeholder="Street / Locality">
+      <input type="text" id="dropPincode" placeholder="Pincode" onblur="autoFillCity('drop')">
+      <input type="text" id="dropCity" placeholder="City" readonly>
+    </div>
+  </div>
+
+  <button class="btn primary-btn" onclick="startCategoryFlow()">
+    <i class="fas fa-arrow-right"></i> Next: Add Items
+  </button>
+
+  <div id="categorySection" class="hidden">
+    <div class="progress-bar">
+      <div id="progressFill" class="progress-fill"></div>
+    </div>
+
+    <h3>Step <span id="stepCount">1</span> of 7: <span id="categoryName">Beds</span></h3>
+
+    <div class="upload-container" id="dropArea">
+      <input type="file" id="categoryImage" accept="image/*" class="hidden-input">
+      <div class="upload-icon">
+        <i class="fas fa-cloud-upload-alt"></i>
+      </div>
+      <p class="upload-text">Click or drag image here</p>
+      <p class="upload-hint">Upload an image of your <span id="categoryHint">bed</span></p>
+      <div id="previewContainer" class="preview-container hidden">
+        <img id="imagePreview" src="#" alt="Preview">
+        <button id="removeImage" class="remove-btn">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="qualitySelect">Material Quality:</label>
+        <div class="select-wrapper">
+          <select id="qualitySelect">
+            <option value="">Select material</option>
+          </select>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="quantityInput">Quantity:</label>
+        <div class="quantity-wrapper">
+          <button class="quantity-btn minus" id="decreaseQty">
+            <i class="fas fa-minus"></i>
+          </button>
+          <input type="number" id="quantityInput" min="1" value="1">
+          <button class="quantity-btn plus" id="increaseQty">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button class="btn primary-btn" id="uploadBtn" onclick="uploadImageAndNext()">
+        <i class="fas fa-upload"></i> Upload & Next
+      </button>
+      <button class="btn skip-btn" onclick="skipCategory()">
+        <i class="fas fa-forward"></i> Skip
+      </button>
+    </div>
+
+    <div id="uploadLoader" class="upload-loader hidden">
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <iframe id="reportFrame" class="hidden"></iframe>
+</div>
+
+<!-- Global loader on redirect -->
+<div id="redirectLoader">
+  <div class="spinner"></div>
+</div>
+
+<script th:src="@{/js/user/booking-dashboard.js}" defer></script>
+</body>
+</html>

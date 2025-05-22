@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Packers & Movers</title>
+
+  <!-- Correct path -->
+  <link rel="stylesheet" th:href="@{/css/index/index-styles.css}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+  <div class="logo">
+    <a th:href="@{/}">
+      <img th:src="@{/images/assets/logo.png}" alt="Packers & Movers Logo" class="logo-img">
+    </a>
+  </div>
+
+  <ul class="nav-links" id="nav-links">
+    <li><a th:href="@{/services}">Services</a></li>
+    <li><a th:href="@{/availability}">Check Availability</a></li>
+    <li><a th:href="@{/contact}">Contact Us</a></li>
+  </ul>
+</nav>
+<!-- Flash message display -->
+<div id="flash-message"
+     th:if="${message}"
+     th:class="'alert ' + (${message.type} == 'success-alert' ? 'alert-success' : 'alert-danger')"
+     role="alert"
+     style="transition: opacity 0.5s ease;">
+  <span th:text="${message.content}"></span>
+</div>
+
+
+<!-- Hero Section -->
+<header class="hero" th:style="'background: url(' + @{/images/index/furniture.jpg} + ') no-repeat center center/cover;'">
+  <div class="hero-content">
+    <h1>Stress-Free Moving Solutions</h1>
+    <p>Fast, Secure, and Affordable Relocation Services</p>
+    <a th:href="@{/login}" class="cta-button">Get Started</a>
+  </div>
+</header>
+
+<!-- Features Section -->
+<section class="features">
+  <h2>Why Choose Us?</h2>
+  <div class="feature-box">
+    <div class="feature">
+      <i class="fas fa-truck-moving"></i>
+      <h3>Reliable Transport</h3>
+      <p>We ensure your belongings are transported safely and on time.</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-users"></i>
+      <h3>Professional Team</h3>
+      <p>Our trained professionals handle your move with care.</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-clock"></i>
+      <h3>Timely Service</h3>
+      <p>We respect your time and ensure timely delivery of services.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Vehicles Section -->
+<section class="vehicles-section">
+  <h2>🚚 Vehicles We Provide</h2>
+  <div class="vehicle-track">
+    <div class="vehicle-card" th:each="i : ${#numbers.sequence(1,7)}">
+      <img th:src="@{'/images/assets/vehicle' + ${i} + '.png'}" alt="vehicle">
+    </div>
+    <div class="vehicle-card" th:each="i : ${#numbers.sequence(1,7)}">
+      <img th:src="@{'/images/assets/vehicle' + ${i} + '.png'}" alt="vehicle">
+    </div>
+  </div>
+
+</section>
+<br>
+
+<!-- FAQ Section -->
+<section class="faq">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-item">
+    <h3>How do I book your services?</h3>
+    <p>Just click "Get Started" and fill the form after login. We'll take care of the rest.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Are there any hidden charges?</h3>
+    <p>No. We provide transparent pricing upfront.</p>
+  </div>
+  <div class="faq-item">
+    <h3>How early should I book?</h3>
+    <p>Preferably 2-3 days before your planned move.</p>
+  </div>
+
+  <div class="faq-expand" onclick="toggleMoreFAQs(this)">
+    <span class="arrow">⬇️</span>
+  </div>
+
+  <div id="more-faqs" style="display: none;">
+    <div class="faq-item">
+      <h3>Does Porter transport between cities?</h3>
+      <p>Yes, we do intercity goods transport across major cities.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What items are prohibited?</h3>
+      <p>Hazardous, perishable, and illegal items are strictly prohibited.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do you offer mini truck rentals on a monthly basis?</h3>
+      <p>Yes, we have contract plans for regular transport needs.</p>
+    </div>
+
+    <div class="faq-query-box">
+      <input type="text" placeholder="Still not found? Raise your query here...">
+      <button>Submit</button>
+    </div>
+  </div>
+</section>
+
+<script>
+  function toggleMoreFAQs(el) {
+    document.getElementById("more-faqs").style.display = "block";
+    el.style.display = "none";
+  }
+</script>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <p>📞 Contact Us: info@packersmovers.com | 📍 Indore, Madhya Pradesh</p>
+    <div class="social-media">
+      <p>Follow us on:</p>
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+      <a href="#"><i class="fab fa-android"></i></a>
+      <a href="#"><i class="fab fa-apple"></i></a>
+    </div>
+  </div>
+</footer>
+
+<!-- Correct JS path -->
+<script th:src="@{/js/index/script.js}"></script>
+<script th:src="@{/js/message.js}"></script>
+
+</body>
+</html>

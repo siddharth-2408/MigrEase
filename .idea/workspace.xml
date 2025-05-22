@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e13a7531-7387-4cff-aaf2-2afa07cba474" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="Enum" />
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;siddharth-2408&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/siddharth-2408/MigrEase.git&quot;,
+    &quot;accountId&quot;: &quot;787b5aec-5edb-44bd-896c-b26ab7138d58&quot;
+  }
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2wnf3jrAYzivmSF0ePjaCQsW4iG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JavaScript Debug.confirm-booking.html.executor&quot;: &quot;Run&quot;,
+    &quot;Notification.DisplayName-DoNotAsk-Database detector&quot;: &quot;Database detector&quot;,
+    &quot;Notification.DoNotAsk-Database detector&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.MigrEaseApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/JAVA/Projects/MigrEase/python&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\JAVA\Projects\MigrEase\python" />
+      <recent name="E:\JAVA\Projects\MigrEase\src\main\java\com\migrease\controllers" />
+      <recent name="E:\JAVA\Projects\MigrEase\src\main\java\com\migrease\service" />
+      <recent name="E:\JAVA\Projects\MigrEase\src\main\java\com\migrease\model" />
+      <recent name="E:\JAVA\Projects\MigrEase\src\main\java\com\migrease\config" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\JAVA\Projects\MigrEase\src\main\resources\templates\user\dashboard" />
+      <recent name="E:\JAVA\Projects\MigrEase\src\main\resources\templates\user" />
+      <recent name="E:\JAVA\Projects\MigrEase\src\main\resources\static" />
+      <recent name="E:\JAVA\Projects\MigrEase\src\main\resources\static\images" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.MigrEaseApplication">
+    <configuration name="confirm-booking.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/MigrEase/templates/user/booking/confirm-booking.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="MigrEaseApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="MigrEase" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.migrease.MigrEaseApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.confirm-booking.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="StructureViewState">
+    <option name="selectedTab" value="Logical" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e13a7531-7387-4cff-aaf2-2afa07cba474" name="Changes" comment="" />
+      <created>1746682063022</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1746682063022</updated>
+      <workItem from="1746682064320" duration="5975000" />
+      <workItem from="1746688961500" duration="30000" />
+      <workItem from="1746689467055" duration="122000" />
+      <workItem from="1746689629033" duration="80000" />
+      <workItem from="1746689728027" duration="192000" />
+      <workItem from="1746689953293" duration="70000" />
+      <workItem from="1746691997928" duration="6809000" />
+      <workItem from="1746700084396" duration="1449000" />
+      <workItem from="1746702747106" duration="3619000" />
+      <workItem from="1746707700661" duration="460000" />
+      <workItem from="1746723651211" duration="2102000" />
+      <workItem from="1746786562861" duration="5291000" />
+      <workItem from="1746792878805" duration="285000" />
+      <workItem from="1746793215598" duration="4677000" />
+      <workItem from="1746806374330" duration="151000" />
+      <workItem from="1746808545096" duration="1572000" />
+      <workItem from="1746811466788" duration="103000" />
+      <workItem from="1746811615307" duration="48000" />
+      <workItem from="1746812794025" duration="2000" />
+      <workItem from="1746875568975" duration="3000" />
+      <workItem from="1746891423052" duration="183000" />
+      <workItem from="1746900035388" duration="13812000" />
+      <workItem from="1746913930593" duration="4867000" />
+      <workItem from="1746953992491" duration="160000" />
+      <workItem from="1746986266010" duration="893000" />
+      <workItem from="1747140495954" duration="18521000" />
+      <workItem from="1747161094340" duration="1792000" />
+      <workItem from="1747215674628" duration="2000" />
+      <workItem from="1747226876185" duration="2918000" />
+      <workItem from="1747237268365" duration="316000" />
+      <workItem from="1747241734897" duration="3981000" />
+      <workItem from="1747297204868" duration="16000" />
+      <workItem from="1747326756718" duration="4059000" />
+      <workItem from="1747331893524" duration="2127000" />
+      <workItem from="1747558362240" duration="38000" />
+      <workItem from="1747558415928" duration="998000" />
+      <workItem from="1747633791727" duration="785000" />
+      <workItem from="1747763567634" duration="1465000" />
+      <workItem from="1747846316954" duration="783000" />
+      <workItem from="1747903099567" duration="2717000" />
+      <workItem from="1747906462984" duration="143000" />
+      <workItem from="1747906629393" duration="81000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

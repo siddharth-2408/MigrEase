@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Support Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" th:href="@{/css/user/dashboard-styles.css}" />
+    <link rel="stylesheet" th:href="@{/css/user/dashboard/user-dashboard.css}" />
+    <link rel="stylesheet" th:href="@{/css/support.css}" />
+</head>
+<body>
+
+<!-- Sidebar Fragment -->
+<div th:replace="fragments/layout :: sidebar"></div>
+
+<div class="container">
+    <h2>Need Help? Contact Our Support Team</h2>
+
+    <div class="address-section">
+        <div class="address-block">
+            <h3><i class="fas fa-phone-alt"></i> Call Us</h3>
+            <p>Phone: <strong>+91 98765 43210</strong></p>
+            <p>Available: 9:00 AM - 6:00 PM (Mon - Sat)</p>
+        </div>
+
+        <div class="address-block">
+            <h3><i class="fas fa-envelope"></i> Email Support</h3>
+            <p>Email: <strong>support@packmove.in</strong></p>
+            <p>We usually respond within 24 hours.</p>
+        </div>
+
+        <div class="address-block">
+            <h3><i class="fas fa-question-circle"></i> FAQ & Help</h3>
+            <p>Check our <a href="#" class="support-link">Help Center</a> for common queries.</p>
+        </div>
+    </div>
+
+    <div id="categorySection">
+        <!-- Flash message display -->
+        <div th:if="${message}" th:class="'alert ' + (${message.type} == 'success-alert' ? 'alert-success' : 'alert-danger')" role="alert">
+            <span th:text="${message.content}"></span>
+        </div>
+        <h3>Submit a Support Request</h3>
+
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 100%;"></div>
+        </div>
+
+        <form th:action="@{/support}" th:object="${supportRequest}" method="post">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" th:field="*{name}" placeholder="Enter your full name" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" th:field="*{email}" placeholder="Enter your email" required />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <input type="text" id="subject" th:field="*{subject}" placeholder="Enter subject" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <div class="select-wrapper">
+                        <select id="category" th:field="*{category}" required>
+                            <option value="">Select a category</option>
+                            <option value="BOOKING">Booking Issues</option>
+                            <option value="PAYMENT">Payment Problems</option>
+                            <option value="PACKAGING">Packaging Concerns</option>
+                            <option value="DELIVERY">Delivery Questions</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group" style="flex: 1 1 100%;">
+                    <label for="message">Message:</label>
+                    <textarea id="message" rows="5" th:field="*{message}" placeholder="Describe your issue in detail..." required></textarea>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="reset" class="btn skip-btn">
+                    <i class="fas fa-times"></i> Reset
+                </button>
+                <button type="submit" class="btn primary-btn">
+                    <i class="fas fa-paper-plane"></i> Submit Request
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script th:src="@{/js/message.js}"></script>
+</body>
+</html>

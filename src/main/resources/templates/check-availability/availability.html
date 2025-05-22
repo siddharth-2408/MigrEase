@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Availability</title>
+    <link rel="stylesheet" th:href="@{/css/check-availability/availability-styles.css}">
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav>
+    <div class="logo">
+        <a th:href="@{/}">
+            <img th:src="@{/images/assets/logo.png}" alt="Packers & Movers Logo" class="logo-img">
+        </a>
+    </div>
+    <ul class="nav-links">
+        <li><a th:href="@{/}">Home</a></li>
+        <li><a th:href="@{/services}">Services</a></li>
+    </ul>
+</nav>
+
+<!-- Availability Section -->
+<section class="availability">
+    <h1>Check Service Availability</h1>
+    <p>Enter your pickup and drop location pin codes to check if we provide service in your area.</p>
+
+    <div class="form-container">
+        <label for="pickupPincode">📍 Pickup Pincode:</label>
+        <input type="number" id="pickupPincode" placeholder="Enter 6-digit pickup pincode" required>
+        <p id="pickupLocation" class="location-text"></p>
+
+        <label for="dropPincode">📍 Drop Pincode:</label>
+        <input type="number" id="dropPincode" placeholder="Enter 6-digit drop pincode" required>
+        <p id="dropLocation" class="location-text"></p>
+
+        <button onclick="checkAvailability()">Check Availability</button>
+    </div>
+
+    <p id="result"></p>
+</section>
+
+<script th:src="@{/js/check-availability/availability-script.js}"></script>
+</body>
+</html>

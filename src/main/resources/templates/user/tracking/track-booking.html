@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Live Booking Tracking</title>
+    <link rel="stylesheet" th:href="@{/css/user/dashboard-styles.css}" />
+    <link rel="stylesheet" th:href="@{/css/user/track-booking.css}" />
+    <link rel="stylesheet" th:href="@{/css/user/dashboard/user-dashboard.css}" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <style>
+        #map { height: 500px; margin: 20px 0; border-radius: 10px; }
+        .track-container { padding: 20px; max-width: 1000px; margin: auto; }
+        #driverInfo { background: #f1f1f1; padding: 20px; border-radius: 10px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div th:replace="fragments/layout :: sidebar"></div>
+
+<div class="track-container">
+    <h2>🚚 Live Booking Tracking</h2>
+    <div id="map"></div>
+
+    <div id="driverInfo" class="hidden">
+        <h3>Driver Assigned ✅</h3>
+        <p><strong>Name:</strong> Raj Singh</p>
+        <p><strong>Vehicle:</strong> Tata Ace Mini Truck</p>
+        <p><strong>Contact:</strong> +91 9876543210</p>
+        <p><strong>ETA:</strong> 25 mins</p>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    const fullAddress = [[${'"' + fullPickupAddress + '"'}]] || "Indore, MP";
+    const apiKey = "pk.d62787b8bb1d6592104ca812083c12c8";
+
+    console.log("Geocoding:", fullAddress);
+
+    fetch(`https://us1.locationiq.com/v1/search?key=${apiKey}&q=${encodeURIComponent(fullAddress)}&format=json`)
+        .then(res => res.json())
+        .then(data => {
+            const lat = parseFloat(data[0].lat);
+            const lng = parseFloat(data[0].lon);
+            initMap(lat, lng);
+        })
+        .catch(err => {
+            console.error("Geocoding failed:", err);
+            initMap(28.6139, 77.2090); // fallback: Delhi
+        });
+
+    function initMap(lat, lng) {
+        const map = L.map('map').setView([lat, lng], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19
+        }).addTo(map);
+
+        L.marker([lat, lng]).addTo(map).bindPopup("Your Pickup Location").openPopup();
+
+        const driverIcon = L.icon({
+            iconUrl: 'https://cdn-icons-png.flaticon.com/512/854/854878.png',
+            iconSize: [32, 32]
+        });
+
+        const driverMarker = L.marker([lat + 0.01, lng - 0.01], { icon: driverIcon })
+            .addTo(map)
+            .bindPopup("Driver: Raj Singh");
+
+        let step = 0;
+        const steps = 100;
+        const delay = 150;
+        const deltaLat = (lat - (lat + 0.01)) / steps;
+        const deltaLng = (lng - (lng - 0.01)) / steps;
+
+        const animate = () => {
+            if (step < steps) {
+                const current = driverMarker.getLatLng();
+                driverMarker.setLatLng([current.lat + deltaLat, current.lng + deltaLng]);
+                step++;
+                setTimeout(animate, delay);
+            } else {
+                document.getElementById("driverInfo").classList.remove("hidden");
+                alert("🚚 Driver Raj Singh has accepted your booking!");
+            }
+        };
+
+        setTimeout(animate, 1000);
+    }
+</script>
+
+</body>
+</html>

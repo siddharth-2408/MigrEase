@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Bookings</title>
+  <link rel="stylesheet" th:href="@{/css/user/dashboard-styles.css}" />
+  <link rel="stylesheet" th:href="@{/css/user/dashboard/user-dashboard.css}" />
+  <link rel="stylesheet" th:href="@{/css/user/booking-list.css}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body>
+
+<div th:replace="fragments/layout :: sidebar"></div>
+<div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+<div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+<div class="main-content">
+  <div class="bookings-container">
+    <div class="header-section">
+      <h2><i class="fas fa-clipboard-list"></i> Your Bookings</h2>
+      <a th:href="@{/user/booking}" class="new-booking-btn btn">
+        <i class="fas fa-plus-circle"></i> New Booking
+      </a>
+    </div>
+
+    <div th:if="${bookings.empty}" class="no-bookings">
+      <div class="empty-state">
+        <i class="fas fa-box-open empty-icon"></i>
+        <p>You have no bookings yet.</p>
+        <a th:href="@{/user/booking}" class="btn">Make a Request</a>
+      </div>
+    </div>
+
+    <div th:unless="${bookings.empty}" class="booking-list">
+      <div th:each="booking : ${bookings}" class="booking-card">
+        <div class="booking-status" th:classappend="${booking.status == 'COMPLETED' ? 'status-completed' : (booking.status == 'CANCELLED' ? 'status-cancelled' : 'status-active')}">
+          <span th:text="${booking.status}"></span>
+        </div>
+
+        <div class="booking-info">
+          <h3 th:text="'Booking #' + ${booking.bookingId}"></h3>
+          <div class="booking-details">
+            <div class="detail-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <strong>Pickup:</strong>
+                <span th:text="${booking.pickupAddress}"></span>
+              </div>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-map-pin"></i>
+              <div>
+                <strong>Drop:</strong>
+                <span th:text="${booking.dropAddress}"></span>
+              </div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-item">
+                <i class="fas fa-couch"></i>
+                <div>
+                  <strong>Items:</strong>
+                  <span th:text="${#lists.size(booking.furnitureItems)}"></span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-calendar-alt"></i>
+                <div>
+                  <strong>Date:</strong>
+                  <span th:text="${#temporals.format(booking.createdAt, 'dd MMM yyyy HH:mm')}"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-actions">
+          <a th:href="@{'/user/booking-details/' + ${booking.bookingId}}" class="btn action-btn view-btn">
+            <i class="fas fa-eye"></i> Details
+          </a>
+          <a th:href="@{'/user/track-booking/' + ${booking.bookingId}}" class="btn action-btn track-btn">
+            <i class="fas fa-truck"></i> Track
+          </a>
+          <!-- Only show cancel button if booking is not already cancelled or completed -->
+          <button th:if="${booking.status != 'CANCELLED' && booking.status != 'COMPLETED'}"
+                  th:data-booking-id="${booking.bookingId}"
+                  class="btn action-btn cancel-btn"
+                  onclick="showCancelConfirmation(this.getAttribute('data-booking-id'))">
+            <i class="fas fa-times-circle"></i> Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cancel Confirmation Modal -->
+<div id="cancelModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h3><i class="fas fa-exclamation-triangle"></i> Cancel Booking</h3>
+    <p>Are you sure you want to cancel this booking? This action cannot be undone.</p>
+    <div class="modal-actions">
+      <button id="confirmCancel" class="btn cancel-confirm-btn">Yes, Cancel Booking</button>
+      <button id="cancelAction" class="btn cancel-dismiss-btn">No, Keep Booking</button>
+    </div>
+  </div>
+</div>
+
+<script th:inline="javascript">
+  let currentBookingId = null;
+
+  function showCancelConfirmation(bookingId) {
+    currentBookingId = bookingId;
+    document.getElementById('cancelModal').style.display = 'flex';
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('cancelModal');
+    const closeModal = document.querySelector('.close-modal');
+    const cancelAction = document.getElementById('cancelAction');
+    const confirmCancel = document.getElementById('confirmCancel');
+
+    closeModal.onclick = function() {
+      modal.style.display = 'none';
+    }
+
+    cancelAction.onclick = function() {
+      modal.style.display = 'none';
+    }
+
+    confirmCancel.onclick = function() {
+      if (currentBookingId) {
+        // Call API to cancel booking
+        fetch(`/api/booking/cancel/${currentBookingId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+                .then(response => response.json())
+                .then(data => {
+                  if (data.success) {
+                    // Show success message and reload page
+                    alert('Booking cancelled successfully');
+                    window.location.reload();
+                  } else {
+                    alert('Failed to cancel booking: ' + data.message);
+                  }
+                })
+                .catch(error => {
+                  console.error('Error:', error);
+                  alert('An error occurred while cancelling the booking');
+                })
+                .finally(() => {
+                  modal.style.display = 'none';
+                });
+      }
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

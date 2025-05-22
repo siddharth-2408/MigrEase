@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Confirm Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" th:href="@{/css/user/dashboard-styles.css}" />
+    <link rel="stylesheet" th:href="@{/css/user/confirm-booking.css}" />
+    <link rel="stylesheet" th:href="@{/css/user/dashboard/user-dashboard.css}" />
+</head>
+<body>
+<div th:replace="fragments/layout :: sidebar"></div>
+
+<div class="confirm-container">
+    <h2><i class="fas fa-box"></i> Booking Confirmation</h2>
+
+    <div class="booking-progress">
+        <div class="progress-step completed">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Address</span>
+        </div>
+        <div class="progress-step completed">
+            <i class="fas fa-couch"></i>
+            <span>Items</span>
+        </div>
+        <div class="progress-step active">
+            <i class="fas fa-check-circle"></i>
+            <span>Confirm</span>
+        </div>
+    </div>
+
+    <div class="address-info">
+        <div class="address-card">
+            <h3><i class="fas fa-home"></i> Pickup Address</h3>
+            <p th:text="${address.pickupHouse} + ', ' + ${address.pickupStreet}"></p>
+            <p th:text="${address.pickupCity} + ' - ' + ${address.pickupPincode}"></p>
+        </div>
+        <div class="address-connector">
+            <i class="fas fa-truck"></i>
+        </div>
+        <div class="address-card">
+            <h3><i class="fas fa-map-pin"></i> Drop Address</h3>
+            <p th:text="${address.dropHouse} + ', ' + ${address.dropStreet}"></p>
+            <p th:text="${address.dropCity} + ' - ' + ${address.dropPincode}"></p>
+        </div>
+    </div>
+
+    <div class="summary">
+        <h3><i class="fas fa-chair"></i> Furniture Summary</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>Category</th>
+                <th>Material</th>
+                <th>Quantity</th>
+                <th>Weight (kg)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${furnitureItems}">
+                <td th:text="${item.category}"></td>
+                <td th:text="${item.quality}"></td>
+                <td th:text="${item.quantity}"></td>
+                <td th:text="${#numbers.formatDecimal(item.weight, 1, 2)}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="summary-totals">
+            <p>Total Items: <strong th:text="${furnitureItems.size()}"></strong></p>
+            <!-- Fixed: Using collection select/project syntax instead of Java 8 lambda -->
+            <p>Total Quantity: <strong th:text="${#aggregates.sum(furnitureItems.![quantity])}"></strong></p>
+            <p class="total-weight">Total Weight: <strong th:text="${#numbers.formatDecimal(totalWeight, 1, 2)} + ' kg'"></strong></p>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a th:href="@{/user/dashboard}" class="btn secondary-btn">
+            <i class="fas fa-arrow-left"></i> Back
+        </a>
+        <form th:action="@{/user/confirm-booking}" method="post" id="confirmForm">
+            <button type="submit" class="btn primary-btn" id="confirmBtn">
+                <i class="fas fa-check"></i> Confirm Booking
+            </button>
+        </form>
+    </div>
+
+    <!-- Loading overlay for form submission -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Processing your booking...</p>
+    </div>
+</div>
+
+<script>
+    document.getElementById('confirmForm').addEventListener('submit', function() {
+        document.getElementById('confirmBtn').disabled = true;
+        document.getElementById('loadingOverlay').style.display = 'flex';
+    });
+</script>
+</body>
+</html>
