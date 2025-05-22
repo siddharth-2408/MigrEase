@@ -60,6 +60,7 @@ MigrEase/
 ### Prerequisites
 - **Python 3.8+**
 - **Java 11+** (for Spring Boot)
+- **MySQL 8.0** (Create a database name **migrease** then only perform other stuffs.)
 - **Maven** (for dependency management)
 
 ### Python Dependencies
