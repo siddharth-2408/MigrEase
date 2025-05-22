@@ -32,7 +32,6 @@ MigrEase/
 │   └── report/               # 📊 Generated HTML reports
 │
 ├── README.md                  # 📘 Project documentation
-└── requirements.txt           # 📋 Python dependencies
 ```
 
 ---
